@@ -1009,10 +1009,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === TREE TEXTURES & PLANES ===
     const treeSources = {
-      spring: 'tree-spring.jpg',
-      summer: 'tree-summer.jpg',
-      autumn: 'tree-autumn.jpg',
-      winter: 'tree-winter.jpg'
+      spring: 'assets/images/tree-spring.jpg',
+      summer: 'assets/images/tree-summer.jpg',
+      autumn: 'assets/images/tree-autumn.jpg',
+      winter: 'assets/images/tree-winter.jpg'
     };
 
     const treePlanes = {};
@@ -1591,7 +1591,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Audio Engine (switch_press.mp3 & switch_release.mp3) ---
     let audioCtx = null;
-    const KEY_SOUND_URLS = ['switch_press.mp3', 'switch_release.mp3'];
+    const KEY_SOUND_URLS = ['assets/audio/switch_press.mp3', 'assets/audio/switch_release.mp3'];
     const keySoundBuffers = [null, null];
     let keySoundsLoading = null;
 
@@ -2237,7 +2237,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (typeof THREE.FontLoader !== 'undefined') {
         try {
           const fontLoader = new THREE.FontLoader();
-          fontLoader.load('space_grotesk_bold.typeface.json', (font) => {
+          fontLoader.load('assets/fonts/space_grotesk_bold.typeface.json', (font) => {
             loadedFont = font;
             update3DCallout(currentSkill);
           }, undefined, (err) => {

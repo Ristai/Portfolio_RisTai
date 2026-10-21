@@ -78,24 +78,31 @@ Khác với các mẫu template công nghiệp thường thấy, dự án đư�
 ```bash
 portfolio-4seasons/
 ├── index.html                   # Cấu trúc HTML5 ngữ nghĩa, SEO & đánh dấu data-i18n
-├── style.css                    # Toàn bộ Design System, CSS Variables theo 4 mùa & Media Queries
-├── main.js                      # Động cơ chính: 4 Mùa, Three.js 3D, Audio, Form, Cuộn trang
-├── translations.js              # Từ điển song ngữ toàn diện (124 mục dữ liệu EN & VI)
-├── keyboard_data.js             # Dữ liệu cấu trúc phím, nhãn tech stack và thông tin phím 3D
-├── three_text.js                # Tiện ích render văn bản hình học trong không gian Three.js
+├── css/
+│   └── style.css                # Toàn bộ Design System, CSS Variables theo 4 mùa & Media Queries
+├── js/
+│   ├── main.js                  # Động cơ chính: 4 Mùa, Three.js 3D, Audio, Form, Cuộn trang
+│   ├── translations.js          # Từ điển song ngữ toàn diện (124 mục dữ liệu EN & VI)
+│   ├── keyboard_data.js         # Dữ liệu cấu trúc phím, nhãn tech stack và thông tin phím 3D
+│   └── three_text.js            # Tiện ích render văn bản hình học trong không gian Three.js
+├── assets/
+│   ├── images/                  # Hình ảnh giao diện & Texture 3D
+│   │   ├── avatar.png           # Ảnh chân dung chất lượng cao
+│   │   ├── tree-spring.jpg      # Texture cây Mùa Xuân (Hoa anh đào)
+│   │   ├── tree-summer.jpg      # Texture cây Mùa Hạ (Tán xanh & đom đóm)
+│   │   ├── tree-autumn.jpg      # Texture cây Mùa Thu (Lá phong vàng)
+│   │   └── tree-winter.jpg      # Texture cây Mùa Đông (Tuyết phủ)
+│   ├── audio/                   # Âm thanh tương tác
+│   │   ├── switch_press.mp3     # Âm thanh nhấn phím cơ
+│   │   └── switch_release.mp3   # Âm thanh thả phím cơ
+│   ├── fonts/                   # Typeface 3D cho nhãn phím cơ
+│   │   └── space_grotesk_bold.typeface.json
+│   └── docs/                    # Hồ sơ tài liệu
+│       └── CV_Ngo_Tien_Tai.pdf  # Curriculum Vitae (Bản PDF)
 ├── server.js                    # Web server Node.js cục bộ siêu nhẹ
-│
-├── assets/ (Hình ảnh & Âm thanh)
-│   ├── avatar.png               # Ảnh chân dung chất lượng cao
-│   ├── tree-spring.jpg          # Texture cây Mùa Xuân (Hoa anh đào)
-│   ├── tree-summer.jpg          # Texture cây Mùa Hạ (Tán xanh & đom đóm)
-│   ├── tree-autumn.jpg          # Texture cây Mùa Thu (Lá phong vàng)
-│   ├── tree-winter.jpg          # Texture cây Mùa Đông (Tuyết phủ)
-│   ├── switch_press.mp3         # Âm thanh nhấn phím cơ
-│   ├── switch_release.mp3       # Âm thanh thả phím cơ
-│   └── space_grotesk_bold.json  # Typeface 3D cho nhãn phím bấm
-│
-└── package.json                 # Cấu hình dự án & dependencies
+├── package.json                 # Cấu hình dự án & dependencies
+├── README.md                    # Tài liệu hướng dẫn dự án chi tiết
+└── .gitignore                   # Cấu hình bỏ qua tệp tin Git
 ```
 
 ---

@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var l = localStorage.getItem('portfolio_lang') || 'en';
+        document.documentElement.setAttribute('lang', l);
+        var s = localStorage.getItem('portfolio_season') || 'spring';
+        if (['spring', 'summer', 'autumn', 'winter'].indexOf(s) === -1) s = 'spring';
+        document.documentElement.setAttribute('data-season', s);
+        var t = localStorage.getItem('portfolio_theme') || 'night';
+        document.documentElement.className = (t === 'day') ? 'theme-day' : 'theme-night';
+      } catch (e) {}
+    })();
+  </script>
+  <title>Ngô Tiến Tài — Frontend • FullStack • Software Engineer</title>
+  <meta name="description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer. Showcasing selected projects, technical stack, and enterprise software engineering experience." />
+  <meta name="author" content="Ngô Tiến Tài" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ngô Tiến Tài — Frontend • FullStack • Software Engineer" />
+  <meta property="og:description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer." />
+  <meta property="og:image" content="avatar.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ngô Tiến Tài — Frontend • FullStack • Software Engineer" />
+  <meta name="twitter:description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer." />
+  <meta name="twitter:image" content="avatar.png" />
+
+  <!-- Fonts: Geist / Space Grotesk & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=44" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="three_text.js"></script>
+</head>
+<body class="theme-night preloader-active">
+  <script>
+    (function () {
+      try {
+        var s = document.documentElement.getAttribute('data-season') || localStorage.getItem('portfolio_season') || 'spring';
+        if (['spring', 'summer', 'autumn', 'winter'].indexOf(s) === -1) s = 'spring';
+        document.body.setAttribute('data-season', s);
+        var t = localStorage.getItem('portfolio_theme') || 'night';
+        document.body.className = ((t === 'day') ? 'theme-day' : 'theme-night') + ' preloader-active';
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- ===== CINEMATIC CREATIVE PRELOADER (PORTFOLIO THEME & DEV HUD) ===== -->
+  <aside id="portfolio-preloader" class="preloader-overlay" aria-label="Đang tải trang">
+    <!-- Seasonal Falling Particles Canvas -->
+    <canvas id="preloader-particles-canvas" class="preloader-particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Ambient Glowing Light Orbs & Scanlines -->
+    <div class="preloader-ambient preloader-ambient-1" aria-hidden="true"></div>
+    <div class="preloader-ambient preloader-ambient-2" aria-hidden="true"></div>
+    <div class="preloader-grid-bg" aria-hidden="true"></div>
+    <div class="preloader-scanline" aria-hidden="true"></div>
+
+    <!-- Center Developer HUD Card -->
+    <div class="preloader-hud-card">
+      <!-- Cyber HUD Corner Brackets -->
+      <span class="hud-corner hud-corner-tl" aria-hidden="true"></span>
+      <span class="hud-corner hud-corner-tr" aria-hidden="true"></span>
+      <span class="hud-corner hud-corner-bl" aria-hidden="true"></span>
+      <span class="hud-corner hud-corner-br" aria-hidden="true"></span>
+
+
+      <!-- Main Brand with Dev Code Syntax -->
+      <div class="preloader-brand-row">
+        <span class="dev-bracket dev-bracket-left">&lt;</span>
+        <h1 class="preloader-brand">RisTai</h1>
+        <span class="dev-bracket dev-bracket-right">/&gt;</span>
+      </div>
+
+      <!-- Developer Roles Badges -->
+      <div class="preloader-roles-container">
+        <span class="role-badge">FRONTEND</span>
+        <span class="role-sep">/</span>
+        <span class="role-badge">FULLSTACK</span>
+        <span class="role-sep">/</span>
+        <span class="role-badge">SOFTWARE ENGINEER</span>
+      </div>
+
+      <!-- Live Terminal Console Stream -->
+      <div class="preloader-terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="t-dot t-red"></span>
+            <span class="t-dot t-yellow"></span>
+            <span class="t-dot t-green"></span>
+          </div>
+          <span class="terminal-title">ristai@portfolio: ~/core-engine</span>
+        </div>
+        <div class="terminal-body">
+          <span class="terminal-prompt">$</span>
+          <span class="terminal-log" id="preloader-terminal-log" data-i18n="preloader_init">Initializing Four Seasons WebGL Core...</span>
+          <span class="terminal-cursor">▋</span>
+        </div>
+      </div>
+
+      <!-- High-tech Progress Bar with Spark Head & Technical Ticks -->
+      <div class="preloader-track-wrap">
+        <div class="preloader-track" aria-hidden="true">
+          <div class="preloader-bar" id="preloader-bar">
+            <span class="preloader-spark-head"></span>
+          </div>
+        </div>
+        <div class="preloader-ticks" aria-hidden="true">
+          <span>00</span>
+          <span>25</span>
+          <span>50</span>
+          <span>75</span>
+          <span>100</span>
+        </div>
+      </div>
+
+      <!-- Metrics and Equalizer Row -->
+      <div class="preloader-metrics-row">
+        <div class="metric-left">
+          <span class="metric-icon">⚡</span>
+          <span class="metric-text" id="preloader-metric-status">BOOTING</span>
+        </div>
+
+        <!-- Big percentage display with glowing cyber mono -->
+        <div class="preloader-percent-wrap">
+          <span class="preloader-percent" id="preloader-percent">0%</span>
+        </div>
+
+        <!-- 7-Bar Cyber Equalizer Visualizer -->
+        <div class="preloader-equalizer" aria-hidden="true">
+          <span class="eq-bar eq-1"></span>
+          <span class="eq-bar eq-2"></span>
+          <span class="eq-bar eq-3"></span>
+          <span class="eq-bar eq-4"></span>
+          <span class="eq-bar eq-5"></span>
+          <span class="eq-bar eq-6"></span>
+          <span class="eq-bar eq-7"></span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== TOP SCROLL PROGRESS BAR (txemaalbero) ===== -->
+  <div class="scroll-progress-track" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
+
+  <!-- ===== CURSOR HALO & MAGNETIC DOT (txemaalbero) ===== -->
+  <div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ===== CELESTIAL BACKGROUND & AMBIENT ORBS ===== -->
+  <div id="ambient-bg" aria-hidden="true">
+    <canvas id="falling-dots-canvas" class="falling-dots-canvas"></canvas>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="frozen-grain"></div>
+  </div>
+
+
+  <!-- ===== FLOATING LUXURY NAVBAR / DOCK ===== -->
+  <header id="site-header">
+    <nav class="nav-dock container" aria-label="Main Navigation">
+      <!-- Brand Logo -->
+      <a href="#" class="nav-brand" id="nav-brand" data-magnetic="true" data-cursor="hover" aria-label="RisTai">
+        <span class="brand-name">RisTai</span>
+      </a>
+
+      <!-- Center Nav Links (Desktop Inline + Luxury Mobile Kinetic Drawer) -->
+      <ul class="nav-links" id="nav-links">
+        <li style="--i: 0">
+          <a href="#hero" class="nav-link active" data-cursor="hover">
+            <span class="nav-link-num">01</span>
+            <span class="nav-link-text" data-i18n="nav_home">Home</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li style="--i: 1">
+          <a href="#about" class="nav-link" data-cursor="hover">
+            <span class="nav-link-num">02</span>
+            <span class="nav-link-text" data-i18n="nav_about">About</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li style="--i: 2">
+          <a href="#skills" class="nav-link" data-cursor="hover">
+            <span class="nav-link-num">03</span>
+            <span class="nav-link-text" data-i18n="nav_skills">Skills</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li style="--i: 3">
+          <a href="#experience" class="nav-link" data-cursor="hover">
+            <span class="nav-link-num">04</span>
+            <span class="nav-link-text" data-i18n="nav_experience">Experience</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li style="--i: 4">
+          <a href="#projects" class="nav-link" data-cursor="hover">
+            <span class="nav-link-num">05</span>
+            <span class="nav-link-text" data-i18n="nav_projects">Projects</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li style="--i: 5">
+          <a href="#contact" class="nav-link" data-cursor="hover">
+            <span class="nav-link-num">06</span>
+            <span class="nav-link-text" data-i18n="nav_contact">Contact</span>
+            <span class="nav-link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+
+        <!-- Luxury Mobile Dropdown Footer (Matching Reference) -->
+        <li class="mobile-drawer-meta" style="--i: 6" aria-hidden="true">
+          <div class="mobile-drawer-divider"></div>
+          <div class="mobile-drawer-email-wrap">
+            <a href="mailto:ngotientai17112004@gmail.com" class="mobile-drawer-email">ngotientai17112004@gmail.com</a>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Controls: Seasons + Day/Night + GitHub -->
+      <div class="nav-controls">
+        <!-- Four Seasons Segmented Control (Minimalist Vector Icons) -->
+        <div class="season-control" id="season-control" role="group" aria-label="Select season / Chọn mùa">
+          <button class="season-pill" data-season="spring" aria-label="Mùa Xuân" title="Mùa Xuân — Spring" data-cursor="hover">
+            <svg class="season-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 9a6 6 0 0 0-6-6c-2.5 0-3 2-3 3 0 3 2 5.5 6 6"/>
+              <path d="M12 9a6 6 0 0 1 6-6c2.5 0 3 2 3 3 0 3-2 5.5-6 6"/>
+              <path d="M12 15a6 6 0 0 0 6 6c2.5 0 3-2 3-3 0-3-2-5.5-6-6"/>
+              <path d="M12 15a6 6 0 0 1-6 6c-2.5 0-3-2-3-3 0-3 2-5.5 6-6"/>
+            </svg>
+          </button>
+          <button class="season-pill" data-season="summer" aria-label="Mùa Hạ" title="Mùa Hạ — Summer" data-cursor="hover">
+            <svg class="season-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2"/>
+              <path d="M12 20v2"/>
+              <path d="m4.93 4.93 1.41 1.41"/>
+              <path d="m17.66 17.66 1.41 1.41"/>
+              <path d="M2 12h2"/>
+              <path d="M20 12h2"/>
+              <path d="m6.34 17.66-1.41 1.41"/>
+              <path d="m19.07 4.93-1.41 1.41"/>
+            </svg>
+          </button>
+          <button class="season-pill" data-season="autumn" aria-label="Mùa Thu" title="Mùa Thu — Autumn" data-cursor="hover">
+            <svg class="season-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+            </svg>
+          </button>
+          <button class="season-pill" data-season="winter" aria-label="Mùa Đông" title="Mùa Đông — Winter" data-cursor="hover">
+            <svg class="season-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+              <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+              <polyline points="9 4 12 1 15 4"/>
+              <polyline points="9 20 12 23 15 20"/>
+              <polyline points="20 9 23 12 20 15"/>
+              <polyline points="4 9 1 12 4 15"/>
+            </svg>
+          </button>
+        </div>
+
+
+        <!-- Language Switcher Segmented Capsule (EN / VI) with Dynamic Glider & 3D Globe -->
+        <div class="lang-switcher-capsule" id="lang-switcher" role="group" aria-label="Language selection / Chọn ngôn ngữ" data-active-lang="en">
+          <!-- Ambient Specular Border Halo -->
+          <div class="lang-capsule-glow" aria-hidden="true"></div>
+          
+          <!-- Cyber Animated Globe with Radar Ping Dot -->
+          <div class="lang-globe-wrap" id="lang-globe-wrap" aria-hidden="true" title="Bilingual Mode / Chế độ song ngữ">
+            <svg class="lang-globe-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9.5"></circle>
+              <line x1="2.5" y1="12" x2="21.5" y2="12"></line>
+              <path d="M12 2.5a14.5 14.5 0 0 1 4 9.5 14.5 14.5 0 0 1-4 9.5 14.5 14.5 0 0 1-4-9.5 14.5 14.5 0 0 1 4-9.5z"></path>
+            </svg>
+            <span class="lang-ping-dot"></span>
+          </div>
+
+          <!-- Segmented Sliding Pill Track -->
+          <div class="lang-track" id="lang-track">
+            <!-- Magnetic Animated Glider Thumb -->
+            <div class="lang-slider" id="lang-slider" aria-hidden="true">
+              <span class="lang-slider-shine"></span>
+            </div>
+
+            <!-- Language Buttons -->
+            <button type="button" class="lang-pill active" data-lang="en" aria-label="English" title="English (Default)" data-cursor="hover">
+              <span class="lang-label">EN</span>
+            </button>
+            <button type="button" class="lang-pill" data-lang="vi" aria-label="Tiếng Việt" title="Tiếng Việt" data-cursor="hover">
+              <span class="lang-label">VI</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Day / Night Animated Sun & Moon Switcher (Vecteezy Style) -->
+        <button id="theme-toggle" class="theme-switcher-toggle" aria-label="Chuyển chế độ Sáng / Tối" title="Chuyển chế độ Sáng / Tối" data-cursor="hover">
+          <div class="toggle-track">
+            <!-- Sky Elements: Fluffy Clouds for Day & Stars for Night -->
+            <div class="toggle-clouds" aria-hidden="true">
+              <span class="cloud cloud-1"></span>
+              <span class="cloud cloud-2"></span>
+              <span class="cloud cloud-3"></span>
+            </div>
+            <div class="toggle-stars" aria-hidden="true">
+              <span class="star star-1">✦</span>
+              <span class="star star-2">★</span>
+              <span class="star star-3">✦</span>
+            </div>
+            <!-- Sliding Celestial Orb (Sun morphs into Moon) -->
+            <div class="toggle-orb" aria-hidden="true">
+              <!-- Moon craters -->
+              <div class="moon-craters">
+                <span class="crater crater-1"></span>
+                <span class="crater crater-2"></span>
+                <span class="crater crater-3"></span>
+              </div>
+              <!-- Sun rays & aura glow -->
+              <div class="sun-glow"></div>
+            </div>
+          </div>
+        </button>
+
+        <!-- Mobile Dropdown Toggle (Kinetic Morphing Hamburger <-> X) -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Mở menu" aria-expanded="false" data-cursor="hover">
+          <div class="burger-box">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </div>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== RIGHT SIDEBAR SECTIONS NAVIGATOR (txemaalbero) ===== -->
+  <nav aria-label="Section navigation" class="side-nav" id="side-nav">
+    <button type="button" class="side-nav-btn active" data-target="#hero" aria-label="Home" data-i18n-title="side_home" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_home">Home</span>
+      <span class="side-nav-dot"></span>
+    </button>
+    <button type="button" class="side-nav-btn" data-target="#about" aria-label="About" data-i18n-title="side_about" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_about">About</span>
+      <span class="side-nav-dot"></span>
+    </button>
+    <button type="button" class="side-nav-btn" data-target="#skills" aria-label="Skills" data-i18n-title="side_skills" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_skills">Skills</span>
+      <span class="side-nav-dot"></span>
+    </button>
+    <button type="button" class="side-nav-btn" data-target="#experience" aria-label="Experience" data-i18n-title="side_experience" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_experience">Experience</span>
+      <span class="side-nav-dot"></span>
+    </button>
+    <button type="button" class="side-nav-btn" data-target="#projects" aria-label="Projects" data-i18n-title="side_projects" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_projects">Projects</span>
+      <span class="side-nav-dot"></span>
+    </button>
+    <button type="button" class="side-nav-btn" data-target="#contact" aria-label="Contact" data-i18n-title="side_contact" data-cursor="hover">
+      <span class="side-nav-label" data-i18n="side_contact">Contact</span>
+      <span class="side-nav-dot"></span>
+    </button>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="main-content">
+
+    <!-- HERO & LIVING FOUR SEASONS TREE SECTION -->
+    <section id="hero" class="hero-section" data-kb-section="hero" aria-labelledby="hero-title">
+      <div class="container hero-container">
+        <!-- Hero Left Info with Circular Avatar -->
+        <div class="hero-info">
+          <!-- Hero Profile Lockup (Harmonious Avatar & Author Meta) -->
+          <div class="hero-profile-lockup fade-in-up" style="--d: 80ms">
+            <div class="hero-avatar-spot">
+              <div class="avatar-pure-wrapper" id="avatar-wrapper" data-magnetic="true" data-cursor="hover">
+                <div class="avatar-aura-glow"></div>
+
+                <!-- Celestial Planetary Orbits System (Inner Slow, Outer Fast) -->
+                <div class="avatar-celestial-system" aria-hidden="true">
+                  <!-- Inner Orbit (Right along the avatar border, slow rotation) -->
+                  <div class="celestial-orbit orbit-inner">
+                    <div class="orbiting-star star-inner" title="Quỹ đạo hành tinh trong">
+                      <span class="star-core"></span>
+                      <span class="star-sparkle">✦</span>
+                    </div>
+                  </div>
+
+                  <!-- Outer Orbit (Wider cosmic orbit, fast rotation) -->
+                  <div class="celestial-orbit orbit-outer">
+                    <div class="orbiting-star star-outer" title="Quỹ đạo hành tinh ngoài">
+                      <span class="star-core"></span>
+                      <span class="star-sparkle">★</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Avatar Border & Face Photo -->
+                <div class="avatar-border-frame">
+                  <img 
+                    src="avatar.png" 
+                    alt="Avatar Ngô Tiến Tài" 
+                    id="user-avatar" 
+                    class="avatar-pure-photo"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="hero-profile-meta">
+              <p class="hero-eyebrow">
+                <span data-i18n="hero_role">Frontend • FullStack • Software Engineer</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Masked Title Slide-Up -->
+          <h1 id="hero-title" class="hero-heading">
+            <span class="hero-word"><span style="--d: 200ms" data-i18n="hero_greeting_1">Hello,</span></span>
+            <span class="hero-word"><span style="--d: 260ms" data-i18n="hero_greeting_2">I'm</span></span><br/>
+            <span class="hero-word hero-name-accent"><span style="--d: 460ms">Ngô</span></span>
+            <span class="hero-word hero-name-accent"><span style="--d: 540ms">Tiến</span></span>
+            <span class="hero-word hero-name-accent"><span style="--d: 620ms">Tài</span></span>
+          </h1>
+
+          <div class="hero-typewriter-box fade-in-up" style="--d: 620ms">
+            <span class="typewriter-prefix" data-i18n="hero_typewriter_prefix">Specializing in</span>
+            <span id="hero-typewriter" class="typewriter-text">Frontend Developer</span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+
+          <p class="hero-description fade-in-up" style="--d: 700ms" data-i18n="hero_desc">
+            Crafting high-performance web applications with seamless interactivity and modern aesthetics. Showcasing selected projects, technical craftsmanship, and UI engineering experience.
+          </p>
+
+          <div class="hero-actions fade-in-up" style="--d: 780ms">
+            <a href="#projects" class="frost-btn frost-btn--primary" id="cta-view-work" data-cursor="hover" data-magnetic="true">
+              <span data-i18n="hero_btn_work">View Projects</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <!-- Tải CV Button -->
+            <a href="CV_Ngo_Tien_Tai.pdf" download="CV_Ngo_Tien_Tai.pdf" class="frost-btn" id="cta-download-cv" data-cursor="hover" data-magnetic="true" title="Download CV of Ngô Tiến Tài">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span data-i18n="hero_btn_cv">Download CV</span>
+            </a>
+            <!-- GitHub Button in Hero -->
+            <a href="https://github.com/Ristai" target="_blank" rel="noopener noreferrer" class="frost-btn" id="cta-github" data-cursor="hover" data-magnetic="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="#contact" class="frost-btn" id="cta-contact" data-cursor="hover" data-magnetic="true" data-i18n="hero_btn_contact">Contact Now</a>
+          </div>
+        </div>
+
+        <!-- Hero Right: CÂY BỐN MÙA TƯƠNG TÁC NGHỆ THUẬT (CHÂN THẬT & SỐNG ĐỘNG) -->
+        <div class="hero-visual reveal" style="--reveal-delay: 200ms; --reveal-duration: 800ms;">
+          <div class="tree-pure-stage" id="tree-stage">
+            <div id="tree-3d-container" aria-label="Interactive 3D Living Four Seasons Tree"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Centered Modern Minimalist Scroll Indicator -->
+      <a href="#about" class="scroll-indicator fade-in-up" style="--d: 920ms" aria-label="Scroll to explore" data-i18n-title="scroll_explore" data-cursor="hover">
+        <span class="scroll-indicator__text" data-i18n="scroll_explore">Scroll to explore</span>
+        <div class="scroll-indicator__mouse">
+          <span class="scroll-indicator__wheel"></span>
+        </div>
+        <span class="scroll-indicator__line"></span>
+      </a>
+    </section>
+
+
+    <!-- ===== SECTION 2: VỀ TÔI (ABOUT ME) ===== -->
+    <section id="about" class="section about-section" data-kb-section="about" aria-labelledby="about-heading">
+      <span class="section-watermark" aria-hidden="true">02</span>
+      <div class="container">
+        <div class="reveal" style="--reveal-delay: 0ms; --reveal-duration: 700ms">
+          <div class="section-badge">
+            <span class="badge-number">02</span>
+            <span class="badge-title" data-i18n="about_badge">About Me</span>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Cột trái: Thông tin trực diện của Developer thực thụ -->
+          <div class="about-main">
+            <div class="reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms">
+              <h2 id="about-heading" class="section-title">
+                Frontend • FullStack • Software Engineer<span class="title-accent">.</span>
+              </h2>
+            </div>
+            <div class="reveal" style="--reveal-delay: 160ms; --reveal-duration: 700ms">
+              <p class="about-lead" data-i18n-html="about_lead">
+                I am <strong>Ngô Tiến Tài</strong>, a developer specializing in <strong>Frontend, FullStack &amp; Software Engineering</strong>. I focus on engineering robust web applications with <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong>, and <strong>TailwindCSS</strong>.
+              </p>
+            </div>
+            <div class="reveal" style="--reveal-delay: 240ms; --reveal-duration: 700ms">
+              <p class="about-text" data-i18n="about_text">
+                I prioritize clean software architecture, converting Figma designs into pixel-perfect web interfaces, writing maintainable code, and ensuring rock-solid performance across the full stack.
+              </p>
+            </div>
+          </div>
+
+          <!-- Cột phải: Developer Code Window (VS Code / TypeScript IDE) -->
+          <div class="dev-ide-window reveal" style="--reveal-delay: 180ms; --reveal-duration: 700ms" data-cursor="hover">
+            <!-- IDE Titlebar: Traffic Lights + Tabs + Git & Copy -->
+            <div class="ide-titlebar">
+              <div class="ide-traffic-lights" aria-hidden="true">
+                <span class="traffic-dot traffic-dot--red"></span>
+                <span class="traffic-dot traffic-dot--yellow"></span>
+                <span class="traffic-dot traffic-dot--green"></span>
+              </div>
+              <div class="ide-tabs" role="tablist">
+                <button type="button" class="ide-tab ide-tab--active" id="ideTabAbout" role="tab" aria-selected="true" data-file="about">
+                  <span class="file-icon-badge file-icon-ts">TS</span>
+                  <span class="ide-tab-name">about.ts</span>
+                </button>
+                <button type="button" class="ide-tab" id="ideTabStack" role="tab" aria-selected="false" data-file="stack">
+                  <span class="file-icon-badge file-icon-json">{}</span>
+                  <span class="ide-tab-name">stack.json</span>
+                </button>
+              </div>
+              <div class="ide-meta-actions">
+                <span class="ide-branch" title="Git Branch">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+                  <span>main</span>
+                </span>
+                <button type="button" class="ide-copy-btn" id="ideCopyBtn" title="Copy code" data-i18n-title="ide_copy" aria-label="Copy code">
+                  <svg class="copy-icon-idle" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <svg class="copy-icon-check" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span class="ide-copy-text" data-i18n="ide_copy">Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- IDE Editor Body: Line numbers + Code Pane -->
+            <div class="ide-editor-body">
+              <div class="ide-line-numbers" id="ideLineNumbers" aria-hidden="true">
+                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                <span>11</span><span>12</span><span>13</span>
+              </div>
+              <div class="ide-code-container">
+                <!-- File 1: about.ts -->
+                <pre class="ide-code-pane ide-code-pane--active" id="paneAbout"><code><span class="code-kw">export const</span> <span class="code-var">developer</span>: <span class="code-type">DeveloperProfile</span> = {
+  <span class="code-prop">name</span>: <span class="code-str">'Ngô Tiến Tài'</span>,
+  <span class="code-prop">roles</span>: [<span class="code-str">'Frontend'</span>, <span class="code-str">'FullStack'</span>, <span class="code-str">'Software Engineer'</span>],
+  <span class="code-prop">stack</span>: [
+    <span class="code-str">'HTML5 / CSS3'</span>, <span class="code-str">'JavaScript'</span>, <span class="code-str">'TypeScript'</span>,
+    <span class="code-str">'React.js'</span>, <span class="code-str">'Next.js'</span>, <span class="code-str">'TailwindCSS'</span>, <span class="code-str">'Node.js'</span>
+  ],
+  <span class="code-prop">focus</span>: [
+    <span class="code-str">'Pixel-perfect Figma to Code'</span>,
+    <span class="code-str">'FullStack Web Architecture'</span>,
+    <span class="code-str">'Clean, scalable codebase'</span>
+  ]
+};</code></pre>
+                <!-- File 2: stack.json -->
+                <pre class="ide-code-pane" id="paneStack" style="display: none;"><code>{
+  <span class="code-prop">"developer"</span>: <span class="code-str">"Ngô Tiến Tài"</span>,
+  <span class="code-prop">"roles"</span>: [
+    <span class="code-str">"Frontend"</span>,
+    <span class="code-str">"FullStack"</span>,
+    <span class="code-str">"Software Engineer"</span>
+  ],
+  <span class="code-prop">"dependencies"</span>: {
+    <span class="code-prop">"react"</span>: <span class="code-str">"^19.0.0"</span>,
+    <span class="code-prop">"next"</span>: <span class="code-str">"^15.0.0"</span>,
+    <span class="code-prop">"typescript"</span>: <span class="code-str">"^5.6.0"</span>,
+    <span class="code-prop">"tailwindcss"</span>: <span class="code-str">"^3.4.0"</span>,
+    <span class="code-prop">"nodejs"</span>: <span class="code-str">"&gt;=20.0.0"</span>
+  }
+}</code></pre>
+              </div>
+            </div>
+
+            <!-- IDE Statusbar -->
+            <div class="ide-statusbar">
+              <div class="statusbar-left">
+                <span class="status-item"><span class="status-indicator"></span>Ready</span>
+                <span class="status-item" id="ideLangTag">TypeScript 5.x</span>
+              </div>
+              <div class="statusbar-right">
+                <span class="status-item">UTF-8</span>
+                <span class="status-item">LF</span>
+                <span class="status-item">Prettier</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 3: TECH STACK (3D MECHANICAL KEYBOARD) ===== -->
+    <section id="skills" class="section skills-section" aria-labelledby="skills-heading">
+      <span class="section-watermark" aria-hidden="true">03</span>
+      <div class="container skills-container">
+        <div class="reveal" style="--reveal-delay: 0ms; --reveal-duration: 700ms">
+          <div class="section-badge">
+            <span class="badge-number">03</span>
+            <span class="badge-title" data-i18n="skills_badge">Technical Skills</span>
+          </div>
+        </div>
+
+        <div class="skills-stage-header reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms">
+          <h2 id="skills-heading" class="skills-stage-title"><span data-i18n="skills_title">Skills &amp; Technologies</span><span class="title-accent">.</span></h2>
+          <p class="skills-stage-desc" data-i18n="skills_desc">
+            Comprehensive toolchain, libraries, and frameworks applied in production to deliver resilient and high-performance digital products.
+          </p>
+        </div>
+
+        <div id="keyboard-3d-wrapper" class="keyboard-3d-wrapper reveal" style="--reveal-delay: 160ms; --reveal-duration: 800ms;" aria-label="3D Mechanical Keyboard Tech Stack">
+          <canvas id="keyboard-canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 4: KINH NGHIỆM (EXPERIENCE) ===== -->
+    <section id="experience" class="section experience-section" data-kb-section="experience" aria-labelledby="exp-heading">
+      <span class="section-watermark section-watermark--right" aria-hidden="true">04</span>
+      <div class="container">
+        <div class="reveal" style="--reveal-delay: 0ms; --reveal-duration: 700ms">
+          <div class="section-badge">
+            <span class="badge-number">04</span>
+            <span class="badge-title" data-i18n="exp_badge">Work Experience</span>
+          </div>
+        </div>
+        <div class="reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms">
+          <h2 id="exp-heading" class="section-title">
+            <span data-i18n="exp_title">Enterprise Experience</span><span class="title-accent">.</span>
+          </h2>
+        </div>
+        <div class="reveal" style="--reveal-delay: 140ms; --reveal-duration: 700ms">
+          <p class="section-subtitle" data-i18n="exp_subtitle">
+            Real-world engineering experience developing production applications in a corporate environment.
+          </p>
+        </div>
+
+        <div class="experience-card-container">
+          <article class="experience-card reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms" data-cursor="hover">
+            <!-- Header: Role, Company, Period (No Demo Button) -->
+            <div class="exp-card-header">
+              <div class="exp-card-identity">
+                <h3 class="exp-card-role" data-i18n="exp_role">Full-stack Programming Intern</h3>
+                <div class="exp-card-company-line">
+                  <span class="exp-card-company" data-i18n="exp_company">E-Solutions Co., Ltd. (Công ty TNHH Giải pháp Hiệu quả Esolutions)</span>
+                  <span class="exp-card-sep">·</span>
+                  <span class="exp-card-project" data-i18n="exp_project">Fixago Project</span>
+                  <span class="exp-card-sep">·</span>
+                  <span class="exp-card-location">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -1px; margin-right: 4px; opacity: 0.8;" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-i18n="exp_location">Ho Chi Minh City, Vietnam</span>
+                  </span>
+                </div>
+              </div>
+              <div class="exp-card-period" data-i18n="exp_period">
+                03/2026 — 06/2026
+              </div>
+            </div>
+
+            <!-- Bullet Points directly from CV -->
+            <ul class="exp-card-bullets">
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_1">
+                  Identified a spam vulnerability in the booking flow, researched and proposed a <strong>rate-limiting rule (max 5 orders/day)</strong>, which was adopted by the team and deployed to production.
+                </div>
+              </li>
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_2">
+                  Developed and modularized core backend services (booking, real-time order tracking, multi-channel notifications) using <strong>Nest.js</strong> with a <strong>Modular Monolith</strong> architecture in a 4-member team.
+                </div>
+              </li>
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_3">
+                  Integrated RESTful APIs with <strong>MySQL</strong> ensuring transactional ACID compliance, synchronizing and rendering order tracking and notification states on the <strong>Next.js</strong> frontend.
+                </div>
+              </li>
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_4">
+                  Built responsive UI components and pages, ensuring consistent and seamless user experience across diverse devices.
+                </div>
+              </li>
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_5">
+                  Optimized frontend rendering performance, eliminating unnecessary re-renders in React components.
+                </div>
+              </li>
+              <li>
+                <span class="exp-bullet-marker" aria-hidden="true"></span>
+                <div class="exp-bullet-text" data-i18n-html="exp_bullet_6">
+                  Reported progress in <strong>1–2 week Agile/Scrum sprints</strong>, adapting engineering plans flexibly as business requirements evolved.
+                </div>
+              </li>
+            </ul>
+
+            <!-- Tech Tags -->
+            <div class="exp-card-tech">
+              <span class="exp-card-tag">Nest.js</span>
+              <span class="exp-card-tag">Next.js</span>
+              <span class="exp-card-tag">MySQL</span>
+              <span class="exp-card-tag">TypeScript</span>
+              <span class="exp-card-tag">Modular Monolith</span>
+              <span class="exp-card-tag">Rate Limiting</span>
+              <span class="exp-card-tag">Agile / Scrum</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 5: DỰ ÁN (PROJECTS) ===== -->
+    <section id="projects" class="section projects-section" aria-labelledby="projects-heading">
+      <span class="section-watermark" aria-hidden="true">05</span>
+      <div class="container">
+        <div class="reveal" style="--reveal-delay: 0ms; --reveal-duration: 700ms">
+          <div class="section-badge">
+            <span class="badge-number">05</span>
+            <span class="badge-title" data-i18n="projects_badge">Featured Projects</span>
+          </div>
+        </div>
+        <div class="reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms">
+          <h2 id="projects-heading" class="section-title">
+            <span data-i18n="projects_title">Selected Works</span><span class="title-accent">.</span>
+          </h2>
+        </div>
+        <div class="reveal" style="--reveal-delay: 140ms; --reveal-duration: 700ms">
+          <p class="section-subtitle" data-i18n="projects_subtitle">
+            Each project combines resilient architecture with refined visual design and interactive user experience.
+          </p>
+        </div>
+
+        <div class="projects-grid-compact">
+          <!-- Project 1: Fixago -->
+          <article class="project-showcase-card reveal" style="--reveal-delay: 80ms; --reveal-duration: 800ms" id="project-fixago" data-kb-section="project1" data-kb-highlights="nextdotjs,nestjs,mysql,docker" data-cursor="hover">
+            <div class="project-card-grid">
+              <div class="project-col-main">
+                <div class="project-top-row">
+              <span class="project-kicker-id" data-i18n="p1_kicker">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                01 // MULTI-CHANNEL PLATFORM
+              </span>
+              <span class="project-badge-pill" data-i18n="p1_badge">Full Stack · 2026</span>
+            </div>
+
+                <div class="project-header-wrap">
+              <h3 class="project-card-heading">Fixago</h3>
+            </div>
+
+                <div class="project-desc-block">
+              <span class="project-desc-kicker" data-i18n="project_desc_kicker">PROJECT OVERVIEW</span>
+              <p class="project-brief" data-i18n="p1_desc">
+                Architected and delivered an on-demand home repair and maintenance ecosystem supporting multi-channel scheduling, real-time technician dispatching, order workflows, and transactions. Built high-performance SSR/SEO web portals with Next.js, a Modular Monolith backend with Nest.js &amp; Redis job queues for GPS-radius matching, resilient ACID transactions with MySQL, a cross-platform Flutter mobile app for field technicians, and containerized deployment with Docker.
+              </p>
+            </div>
+
+                <div class="project-bottom-wrap">
+              <div class="project-chips-compact">
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg>
+                  <span>Next.js</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.131.047c-.173 0-.334.037-.483.087.316.21.49.49.576.806.007.043.019.074.025.117a.681.681 0 0 1 .013.112c.024.545-.143.614-.26.936-.18.415-.13.861.086 1.22a.74.74 0 0 0 .074.137c-.235-1.568 1.073-1.803 1.314-2.293.019-.428-.334-.713-.613-.911a1.37 1.37 0 0 0-.732-.21zM16.102.4c-.024.143-.006.106-.012.18-.006.05-.006.112-.012.161-.013.05-.025.1-.044.149-.012.05-.03.1-.05.149l-.067.142c-.02.025-.031.05-.05.075l-.037.055a2.152 2.152 0 0 1-.093.124c-.037.038-.068.081-.112.112v.006c-.037.031-.074.068-.118.1-.13.099-.278.173-.415.266-.043.03-.087.056-.124.093a.906.906 0 0 0-.118.099c-.043.037-.074.074-.111.118-.031.037-.068.08-.093.124a1.582 1.582 0 0 0-.087.13c-.025.05-.043.093-.068.142-.019.05-.037.093-.05.143a2.007 2.007 0 0 0-.043.155c-.006.025-.006.056-.012.08-.007.025-.007.05-.013.075 0 .05-.006.105-.006.155 0 .037 0 .074.006.111 0 .05.006.1.019.155.006.05.018.1.03.15.02.049.032.098.05.148.013.03.031.062.044.087l-1.426-.552c-.241-.068-.477-.13-.719-.186l-.39-.093c-.372-.074-.75-.13-1.128-.167-.013 0-.019-.006-.031-.006A11.082 11.082 0 0 0 8.9 2.855c-.378.025-.756.074-1.134.136a12.45 12.45 0 0 0-.837.174l-.279.074c-.092.037-.18.08-.266.118l-.205.093c-.012.006-.024.006-.03.012-.063.031-.118.056-.174.087a2.738 2.738 0 0 0-.236.118c-.043.018-.086.043-.124.062a.559.559 0 0 1-.055.03c-.056.032-.112.063-.162.094a1.56 1.56 0 0 0-.148.093c-.044.03-.087.055-.124.086-.006.007-.013.007-.019.013-.037.025-.08.056-.118.087l-.012.012-.093.074c-.012.007-.025.019-.037.025-.031.025-.062.056-.093.08-.006.013-.019.02-.025.025-.037.038-.074.069-.111.106-.007 0-.007.006-.013.012a1.742 1.742 0 0 0-.111.106c-.007.006-.007.12-.013.012a1.454 1.454 0 0 0-.093.1c-.012.012-.03.024-.043.036a1.374 1.374 0 0 1-.106.112c-.006.012-.018.019-.024.03-.05.05-.093.1-.143.15l-.018.018c-.1.106-.205.211-.317.304-.111.1-.229.192-.347.273a3.777 3.777 0 0 1-.762.421c-.13.056-.267.106-.403.149-.26.056-.527.161-.756.18-.05 0-.105.012-.155.018l-.155.037-.149.056c-.05.019-.099.044-.148.068-.044.031-.093.056-.137.087a1.011 1.011 0 0 0-.124.106c-.043.03-.087.074-.124.111-.037.043-.074.08-.105.124-.031.05-.068.093-.093.143a1.092 1.092 0 0 0-.087.142c-.025.056-.05.106-.068.161-.019.05-.037.106-.056.161-.012.05-.025.1-.03.15 0 .005-.007.012-.007.018-.012.056-.012.13-.019.167C.006 7.95 0 7.986 0 8.03a.657.657 0 0 0 .074.31v.006c.019.037.044.075.069.112.024.037.05.074.08.111.031.031.068.069.106.1a.906.906 0 0 0 .117.099c.149.13.186.173.378.272.031.019.062.031.1.05.006 0 .012.006.018.006 0 .013 0 .019.006.031a1.272 1.272 0 0 0 .08.298c.02.037.032.074.05.111.007.013.013.025.02.031.024.05.049.093.073.137l.093.13c.031.037.069.08.106.118.037.037.074.068.118.105 0 0 .006.006.012.006.037.031.074.062.112.087a.986.986 0 0 0 .136.08c.043.025.093.05.142.069a.73.73 0 0 0 .124.043c.007.006.013.006.025.012.025.007.056.013.08.019-.018.335-.024.65.026.762.055.124.328-.254.6-.688-.036.428-.061.93 0 1.079.069.155.44-.329.763-.862 4.395-1.016 8.405 2.02 8.826 6.31-.08-.67-.905-1.041-1.283-.948-.186.458-.502 1.047-1.01 1.413.043-.41.025-.83-.062-1.24a4.009 4.009 0 0 1-.769 1.562c-.588.043-1.177-.242-1.487-.67-.025-.018-.031-.055-.05-.08-.018-.043-.037-.087-.05-.13a.515.515 0 0 1-.037-.13c-.006-.044-.006-.087-.006-.137v-.093a.992.992 0 0 1 .031-.13c.013-.043.025-.086.044-.13.024-.043.043-.087.074-.13.105-.298.105-.54-.087-.682a.706.706 0 0 0-.118-.062c-.024-.006-.055-.018-.08-.025l-.05-.018a.847.847 0 0 0-.13-.031.472.472 0 0 0-.13-.019 1.01 1.01 0 0 0-.136-.012c-.031 0-.062.006-.093.006a.484.484 0 0 0-.137.019c-.043.006-.086.012-.13.024a1.068 1.068 0 0 0-.13.044c-.043.018-.08.037-.124.056-.037.018-.074.043-.118.062-1.444.942-.582 3.148.403 3.787-.372.068-.75.148-.855.229l-.013.012c.267.161.546.298.837.416.397.13.818.247 1.004.297v.006a5.996 5.996 0 0 0 1.562.112c2.746-.192 4.996-2.281 5.405-5.033l.037.161c.019.112.043.23.056.347v.006c.012.056.018.112.025.162v.024c.006.056.012.112.012.162.006.068.012.136.012.204v.1c0 .03.007.067.007.098 0 .038-.007.075-.007.112v.087c0 .043-.006.08-.006.124 0 .025 0 .05-.006.08 0 .044-.006.087-.006.137-.006.018-.006.037-.006.055l-.02.143c0 .019 0 .037-.005.056-.007.062-.019.118-.025.18v.012l-.037.174v.018l-.037.167c0 .007-.007.02-.007.025a1.663 1.663 0 0 1-.043.168v.018c-.019.062-.037.118-.05.174-.006.006-.006.012-.006.012l-.056.186c-.024.062-.043.118-.068.18-.025.062-.043.124-.068.18-.025.062-.05.117-.074.18h-.007c-.024.055-.05.117-.08.173a.302.302 0 0 1-.019.043c-.006.006-.006.013-.012.019a5.867 5.867 0 0 1-1.742 2.082c-.05.031-.099.069-.149.106-.012.012-.03.018-.043.03a2.603 2.603 0 0 1-.136.094l.018.037h.007l.26-.037h.006c.161-.025.322-.056.483-.087.044-.006.093-.019.137-.031l.087-.019c.043-.006.086-.018.13-.024.037-.013.074-.02.111-.031.62-.15 1.221-.354 1.798-.595a9.926 9.926 0 0 1-3.85 3.142c.714-.05 1.426-.167 2.114-.366a9.903 9.903 0 0 0 5.857-4.68 9.893 9.893 0 0 1-1.667 3.986 9.758 9.758 0 0 0 1.655-1.376 9.824 9.824 0 0 0 2.61-5.268c.21.98.272 1.99.18 2.987 4.474-6.241.371-12.712-1.346-14.416-.006-.013-.012-.019-.012-.031-.006.006-.006.006-.006.012 0-.006 0-.006-.007-.012 0 .074-.006.148-.012.223a8.34 8.34 0 0 1-.062.415c-.03.136-.068.273-.105.41-.044.13-.093.266-.15.396a5.322 5.322 0 0 1-.185.378 4.735 4.735 0 0 1-.477.688c-.093.111-.192.21-.292.31a3.994 3.994 0 0 1-.18.155l-.142.124a3.459 3.459 0 0 1-.347.241 4.295 4.295 0 0 1-.366.211c-.13.062-.26.118-.39.174a4.364 4.364 0 0 1-.818.223c-.143.025-.285.037-.422.05a4.914 4.914 0 0 1-.297.012 4.66 4.66 0 0 1-.422-.025 3.137 3.137 0 0 1-.421-.062 3.136 3.136 0 0 1-.415-.105h-.007c.137-.013.273-.025.41-.05a4.493 4.493 0 0 0 .818-.223c.136-.05.266-.112.39-.174.13-.062.248-.13.372-.204.118-.08.235-.161.347-.248.112-.087.217-.18.316-.279.105-.093.198-.198.291-.304.093-.111.18-.223.26-.334.013-.019.026-.044.038-.062.062-.1.124-.199.18-.298a4.272 4.272 0 0 0 .334-.775c.044-.13.075-.266.106-.403.025-.142.05-.278.062-.415.012-.142.025-.285.025-.421 0-.1-.007-.199-.013-.298a6.726 6.726 0 0 0-.05-.415 4.493 4.493 0 0 0-.092-.415c-.044-.13-.087-.267-.137-.397-.05-.13-.111-.26-.173-.384-.069-.124-.137-.248-.211-.366a6.843 6.843 0 0 0-.248-.34c-.093-.106-.186-.212-.285-.317a3.878 3.878 0 0 0-.161-.155c-.28-.217-.57-.421-.862-.607a1.154 1.154 0 0 0-.124-.062 2.415 2.415 0 0 0-.589-.26Z"/></svg>
+                  <span>Nest.js</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 4.02 2 6.5v11C2 19.98 6.48 22 12 22s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2c4.41 0 8 1.34 8 3s-3.59 3-8 3-8-1.34-8-3 3.59-3 8-3zm0 16c-4.41 0-8-1.34-8-3v-2.03c1.93 1.25 4.8 1.93 8 1.93s6.07-.68 8-1.93V17c0 1.66-3.59 3-8 3zm0-5c-4.41 0-8-1.34-8-3v-2.03c1.93 1.25 4.8 1.93 8 1.93s6.07-.68 8-1.93V12c0 1.66-3.59 3-8 3z"/></svg>
+                  <span>MySQL</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                  <span>Flutter</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                  <span>Docker</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  <span>Redis</span>
+                </span>
+              </div>
+              <div class="project-card-actions">
+                <a href="https://www.fixago.vn/" target="_blank" rel="noopener noreferrer" class="compact-btn compact-btn--primary" aria-label="View Fixago Project">
+                  <span data-i18n="btn_view_project">View Live Project</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              </div>
+            </div>
+              </div>
+
+              <div class="project-col-roles">
+                <!-- Detailed Architecture Roles with Icons -->
+            <div class="project-tech-roles">
+              <div class="tech-roles-title">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span data-i18n="project_roles_kicker">Architecture &amp; Tech Roles:</span>
+              </div>
+              <div class="tech-roles-grid">
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg>
+                    Next.js
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r1">Scheduling Web Portal &amp; SSR SEO optimization</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.131.047c-.173 0-.334.037-.483.087.316.21.49.49.576.806.007.043.019.074.025.117a.681.681 0 0 1 .013.112c.024.545-.143.614-.26.936-.18.415-.13.861.086 1.22a.74.74 0 0 0 .074.137c-.235-1.568 1.073-1.803 1.314-2.293.019-.428-.334-.713-.613-.911a1.37 1.37 0 0 0-.732-.21zM16.102.4c-.024.143-.006.106-.012.18-.006.05-.006.112-.012.161-.013.05-.025.1-.044.149-.012.05-.03.1-.05.149l-.067.142c-.02.025-.031.05-.05.075l-.037.055a2.152 2.152 0 0 1-.093.124c-.037.038-.068.081-.112.112v.006c-.037.031-.074.068-.118.1-.13.099-.278.173-.415.266-.043.03-.087.056-.124.093a.906.906 0 0 0-.118.099c-.043.037-.074.074-.111.118-.031.037-.068.08-.093.124a1.582 1.582 0 0 0-.087.13c-.025.05-.043.093-.068.142-.019.05-.037.093-.05.143a2.007 2.007 0 0 0-.043.155c-.006.025-.006.056-.012.08-.007.025-.007.05-.013.075 0 .05-.006.105-.006.155 0 .037 0 .074.006.111 0 .05.006.1.019.155.006.05.018.1.03.15.02.049.032.098.05.148.013.03.031.062.044.087l-1.426-.552c-.241-.068-.477-.13-.719-.186l-.39-.093c-.372-.074-.75-.13-1.128-.167-.013 0-.019-.006-.031-.006A11.082 11.082 0 0 0 8.9 2.855c-.378.025-.756.074-1.134.136a12.45 12.45 0 0 0-.837.174l-.279.074c-.092.037-.18.08-.266.118l-.205.093c-.012.006-.024.006-.03.012-.063.031-.118.056-.174.087a2.738 2.738 0 0 0-.236.118c-.043.018-.086.043-.124.062a.559.559 0 0 1-.055.03c-.056.032-.112.063-.162.094a1.56 1.56 0 0 0-.148.093c-.044.03-.087.055-.124.086-.006.007-.013.007-.019.013-.037.025-.08.056-.118.087l-.012.012-.093.074c-.012.007-.025.019-.037.025-.031.025-.062.056-.093.08-.006.013-.019.02-.025.025-.037.038-.074.069-.111.106-.007 0-.007.006-.013.012a1.742 1.742 0 0 0-.111.106c-.007.006-.007.012-.013.012a1.454 1.454 0 0 0-.093.1c-.012.012-.03.024-.043.036a1.374 1.374 0 0 1-.106.112c-.006.012-.018.019-.024.03-.05.05-.093.1-.143.15l-.018.018c-.1.106-.205.211-.317.304-.111.1-.229.192-.347.273a3.777 3.777 0 0 1-.762.421c-.13.056-.267.106-.403.149-.26.056-.527.161-.756.18-.05 0-.105.012-.155.018l-.155.037-.149.056c-.05.019-.099.044-.148.068-.044.031-.093.056-.137.087a1.011 1.011 0 0 0-.124.106c-.043.03-.087.074-.124.111-.037.043-.074.08-.105.124-.031.05-.068.093-.093.143a1.092 1.092 0 0 0-.087.142c-.025.056-.05.106-.068.161-.019.05-.037.106-.056.161-.012.05-.025.1-.03.15 0 .005-.007.012-.007.018-.012.056-.012.13-.019.167C.006 7.95 0 7.986 0 8.03a.657.657 0 0 0 .074.31v.006c.019.037.044.075.069.112.024.037.05.074.08.111.031.031.068.069.106.1a.906.906 0 0 0 .117.099c.149.13.186.173.378.272.031.019.062.031.1.05.006 0 .012.006.018.006 0 .013 0 .019.006.031a1.272 1.272 0 0 0 .08.298c.02.037.032.074.05.111.007.013.013.025.02.031.024.05.049.093.073.137l.093.13c.031.037.069.08.106.118.037.037.074.068.118.105 0 0 .006.006.012.006.037.031.074.062.112.087a.986.986 0 0 0 .136.08c.043.025.093.05.142.069a.73.73 0 0 0 .124.043c.007.006.013.006.025.012.025.007.056.013.08.019-.018.335-.024.65.026.762.055.124.328-.254.6-.688-.036.428-.061.93 0 1.079.069.155.44-.329.763-.862 4.395-1.016 8.405 2.02 8.826 6.31-.08-.67-.905-1.041-1.283-.948-.186.458-.502 1.047-1.01 1.413.043-.41.025-.83-.062-1.24a4.009 4.009 0 0 1-.769 1.562c-.588.043-1.177-.242-1.487-.67-.025-.018-.031-.055-.05-.08-.018-.043-.037-.087-.05-.13a.515.515 0 0 1-.037-.13c-.006-.044-.006-.087-.006-.137v-.093a.992.992 0 0 1 .031-.13c.013-.043.025-.086.044-.13.024-.043.043-.087.074-.13.105-.298.105-.54-.087-.682a.706.706 0 0 0-.118-.062c-.024-.006-.055-.018-.08-.025l-.05-.018a.847.847 0 0 0-.13-.031.472.472 0 0 0-.13-.019 1.01 1.01 0 0 0-.136-.012c-.031 0-.062.006-.093.006a.484.484 0 0 0-.137.019c-.043.006-.086.012-.13.024a1.068 1.068 0 0 0-.13.044c-.043.018-.08.037-.124.056-.037.018-.074.043-.118.062-1.444.942-.582 3.148.403 3.787-.372.068-.75.148-.855.229l-.013.012c.267.161.546.298.837.416.397.13.818.247 1.004.297v.006a5.996 5.996 0 0 0 1.562.112c2.746-.192 4.996-2.281 5.405-5.033l.037.161c.019.112.043.23.056.347v.006c.012.056.018.112.025.162v.024c.006.056.012.112.012.162.006.068.012.136.012.204v.1c0 .03.007.067.007.098 0 .038-.007.075-.007.112v.087c0 .043-.006.08-.006.124 0 .025 0 .05-.006.08 0 .044-.006.087-.006.137-.006.018-.006.037-.006.055l-.02.143c0 .019 0 .037-.005.056-.007.062-.019.118-.025.18v.012l-.037.174v.018l-.037.167c0 .007-.007.02-.007.025a1.663 1.663 0 0 1-.043.168v.018c-.019.062-.037.118-.05.174-.006.006-.006.012-.006.012l-.056.186c-.024.062-.043.118-.068.18-.025.062-.043.124-.068.18-.025.062-.05.117-.074.18h-.007c-.024.055-.05.117-.08.173a.302.302 0 0 1-.019.043c-.006.006-.006.013-.012.019a5.867 5.867 0 0 1-1.742 2.082c-.05.031-.099.069-.149.106-.012.012-.03.018-.043.03a2.603 2.603 0 0 1-.136.094l.018.037h.007l.26-.037h.006c.161-.025.322-.056.483-.087.044-.006.093-.019.137-.031l.087-.019c.043-.006.086-.018.13-.024.037-.013.074-.02.111-.031.62-.15 1.221-.354 1.798-.595a9.926 9.926 0 0 1-3.85 3.142c.714-.05 1.426-.167 2.114-.366a9.903 9.903 0 0 0 5.857-4.68 9.893 9.893 0 0 1-1.667 3.986 9.758 9.758 0 0 0 1.655-1.376 9.824 9.824 0 0 0 2.61-5.268c.21.98.272 1.99.18 2.987 4.474-6.241.371-12.712-1.346-14.416-.006-.013-.012-.019-.012-.031-.006.006-.006.006-.006.012 0-.006 0-.006-.007-.012 0 .074-.006.148-.012.223a8.34 8.34 0 0 1-.062.415c-.03.136-.068.273-.105.41-.044.13-.093.266-.15.396a5.322 5.322 0 0 1-.185.378 4.735 4.735 0 0 1-.477.688c-.093.111-.192.21-.292.31a3.994 3.994 0 0 1-.18.155l-.142.124a3.459 3.459 0 0 1-.347.241 4.295 4.295 0 0 1-.366.211c-.13.062-.26.118-.39.174a4.364 4.364 0 0 1-.818.223c-.143.025-.285.037-.422.05a4.914 4.914 0 0 1-.297.012 4.66 4.66 0 0 1-.422-.025 3.137 3.137 0 0 1-.421-.062 3.136 3.136 0 0 1-.415-.105h-.007c.137-.013.273-.025.41-.05a4.493 4.493 0 0 0 .818-.223c.136-.05.266-.112.39-.174.13-.062.248-.13.372-.204.118-.08.235-.161.347-.248.112-.087.217-.18.316-.279.105-.093.198-.198.291-.304.093-.111.18-.223.26-.334.013-.019.026-.044.038-.062.062-.1.124-.199.18-.298a4.272 4.272 0 0 0 .334-.775c.044-.13.075-.266.106-.403.025-.142.05-.278.062-.415.012-.142.025-.285.025-.421 0-.1-.007-.199-.013-.298a6.726 6.726 0 0 0-.05-.415 4.493 4.493 0 0 0-.092-.415c-.044-.13-.087-.267-.137-.397-.05-.13-.111-.26-.173-.384-.069-.124-.137-.248-.211-.366a6.843 6.843 0 0 0-.248-.34c-.093-.106-.186-.212-.285-.317a3.878 3.878 0 0 0-.161-.155c-.28-.217-.57-.421-.862-.607a1.154 1.154 0 0 0-.124-.062 2.415 2.415 0 0 0-.589-.26Z"/></svg>
+                    Nest.js
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r2">Modular Monolith API &amp; field technician dispatch</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                    Flutter
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r3">Mobile app for field technicians &amp; GPS routing</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 4.02 2 6.5v11C2 19.98 6.48 22 12 22s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2c4.41 0 8 1.34 8 3s-3.59 3-8 3-8-1.34-8-3 3.59-3 8-3zm0 16c-4.41 0-8-1.34-8-3v-2.03c1.93 1.25 4.8 1.93 8 1.93s6.07-.68 8-1.93V17c0 1.66-3.59 3-8 3zm0-5c-4.41 0-8-1.34-8-3v-2.03c1.93 1.25 4.8 1.93 8 1.93s6.07-.68 8-1.93V12c0 1.66-3.59 3-8 3z"/></svg>
+                    MySQL
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r4">ACID database for orders &amp; ledger workflows</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Redis
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r5">Dispatch queues, in-memory caching &amp; Pub/Sub</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                    Docker
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p1_r6">Containerized infrastructure &amp; automated CI/CD</span>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Moni -->
+          <article class="project-showcase-card reveal" style="--reveal-delay: 180ms; --reveal-duration: 800ms" id="project-moni" data-kb-section="project2" data-kb-highlights="csharp,dotnet,docker" data-cursor="hover">
+            <div class="project-card-grid">
+              <div class="project-col-main">
+                <div class="project-top-row">
+              <span class="project-kicker-id" data-i18n="p2_kicker">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                02 // PERSONAL FINANCE
+              </span>
+              <span class="project-badge-pill" data-i18n="p2_badge">Full Stack · 2025</span>
+            </div>
+
+                <div class="project-header-wrap">
+              <h3 class="project-card-heading">Moni</h3>
+            </div>
+
+                <div class="project-desc-block">
+              <span class="project-desc-kicker" data-i18n="project_desc_kicker">PROJECT OVERVIEW</span>
+              <p class="project-brief" data-i18n="p2_desc">
+                Architected a comprehensive cross-platform personal expense and financial tracking application featuring daily bookkeeping, custom categorization, multi-wallet balancing, and monthly budget limits. Crafted a fluid Flutter mobile UI for real-time cash flow visualization, connected to a robust ASP.NET Core &amp; C# RESTful backend for financial analytics, rule-based limits, and secure JWT authentication with structured SQL Server transactions.
+              </p>
+            </div>
+
+                <div class="project-bottom-wrap">
+              <div class="project-chips-compact">
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                  <span>Flutter</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z"/></svg>
+                  <span>ASP.NET</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M1.194 7.543v8.913c0 1.103.588 2.122 1.544 2.674l7.718 4.456a3.086 3.086 0 0 0 3.088 0l7.718-4.456a3.087 3.087 0 0 0 1.544-2.674V7.543a3.084 3.084 0 0 0-1.544-2.673L13.544.414a3.086 3.086 0 0 0-3.088 0L2.738 4.87a3.085 3.085 0 0 0-1.544 2.673Zm5.403 2.914v3.087a.77.77 0 0 0 .772.772.773.773 0 0 0 .772-.772.773.773 0 0 1 1.317-.546.775.775 0 0 1 .226.546 2.314 2.314 0 1 1-4.631 0v-3.087c0-.615.244-1.203.679-1.637a2.312 2.312 0 0 1 3.274 0c.434.434.678 1.023.678 1.637a.769.769 0 0 1-.226.545.767.767 0 0 1-1.091 0 .77.77 0 0 1-.226-.545.77.77 0 0 0-.772-.772.771.771 0 0 0-.772.772Zm12.35 3.087a.77.77 0 0 1-.772.772h-.772v.772a.773.773 0 0 1-1.544 0v-.772h-1.544v.772a.773.773 0 0 1-1.317.546.775.775 0 0 1-.226-.546v-.772H12a.771.771 0 1 1 0-1.544h.772v-1.543H12a.77.77 0 1 1 0-1.544h.772v-.772a.773.773 0 0 1 1.317-.546.775.775 0 0 1 .226.546v.772h1.544v-.772a.773.773 0 0 1 1.544 0v.772h.772a.772.772 0 0 1 0 1.544h-.772v1.543h.772a.776.776 0 0 1 .772.772Zm-3.088-2.315h-1.544v1.543h1.544v-1.543Z"/></svg>
+                  <span>C#</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 3.79 2 6v12c0 2.21 4.48 4 10 4s10-1.79 10-4V6c0-2.21-4.48-4-10-4zm0 2c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3zm0 16c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V17c0 1.66-3.58 3-8 3zm0-5c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V12c0 1.66-3.58 3-8 3z"/></svg>
+                  <span>SQL Server</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                  <span>Docker</span>
+                </span>
+              </div>
+              <div class="project-card-actions">
+                <div class="project-dropdown-wrap" id="moni-repo-dropdown">
+                  <button type="button" class="compact-btn compact-btn--primary project-dropdown-btn" id="moni-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                    <span data-i18n="btn_view_project">View Live Project</span>
+                    <svg class="dropdown-chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                  <div class="project-dropdown-menu" id="moni-dropdown-menu" role="menu">
+                    <a href="https://github.com/Ristai/Moni_App" target="_blank" rel="noopener noreferrer" class="project-dropdown-item" role="menuitem">
+                      <div class="dropdown-item-badge">
+                        <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="p2_repo1_title">Moni App (Mobile)</span>
+                        <span class="dropdown-item-desc" data-i18n="p2_repo1_desc">Flutter • Cross-platform mobile app</span>
+                      </div>
+                      <svg class="dropdown-arrow-out" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <a href="https://github.com/Ristai/Moni_API" target="_blank" rel="noopener noreferrer" class="project-dropdown-item" role="menuitem">
+                      <div class="dropdown-item-badge">
+                        <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="p2_repo2_title">Moni API (Backend)</span>
+                        <span class="dropdown-item-desc" data-i18n="p2_repo2_desc">ASP.NET Core &amp; C# • RESTful Web API</span>
+                      </div>
+                      <svg class="dropdown-arrow-out" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+
+              <div class="project-col-roles">
+                <!-- Detailed Architecture Roles with Icons -->
+            <div class="project-tech-roles">
+              <div class="tech-roles-title">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span data-i18n="project_roles_kicker">Architecture &amp; Tech Roles:</span>
+              </div>
+              <div class="tech-roles-grid">
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.37zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                    Flutter
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p2_r1">Cross-platform mobile app for expense &amp; wallet tracking</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z"/></svg>
+                    ASP.NET
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p2_r2">Backend Web API for calculations, RBAC &amp; JWT</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M1.194 7.543v8.913c0 1.103.588 2.122 1.544 2.674l7.718 4.456a3.086 3.086 0 0 0 3.088 0l7.718-4.456a3.087 3.087 0 0 0 1.544-2.674V7.543a3.084 3.084 0 0 0-1.544-2.673L13.544.414a3.086 3.086 0 0 0-3.088 0L2.738 4.87a3.085 3.085 0 0 0-1.544 2.673Zm5.403 2.914v3.087a.77.77 0 0 0 .772.772.773.773 0 0 0 .772-.772.773.773 0 0 1 1.317-.546.775.775 0 0 1 .226.546 2.314 2.314 0 1 1-4.631 0v-3.087c0-.615.244-1.203.679-1.637a2.312 2.312 0 0 1 3.274 0c.434.434.678 1.023.678 1.637a.769.769 0 0 1-.226.545.767.767 0 0 1-1.091 0 .77.77 0 0 1-.226-.545.77.77 0 0 0-.772-.772.771.771 0 0 0-.772.772Zm12.35 3.087a.77.77 0 0 1-.772.772h-.772v.772a.773.773 0 0 1-1.544 0v-.772h-1.544v.772a.773.773 0 0 1-1.317.546.775.775 0 0 1-.226-.546v-.772H12a.771.771 0 1 1 0-1.544h.772v-1.543H12a.77.77 0 1 1 0-1.544h.772v-.772a.773.773 0 0 1 1.317-.546.775.775 0 0 1 .226.546v.772h1.544v-.772a.773.773 0 0 1 1.544 0v.772h.772a.772.772 0 0 1 0 1.544h-.772v1.543h.772a.776.776 0 0 1 .772.772Zm-3.088-2.315h-1.544v1.543h1.544v-1.543Z"/></svg>
+                    C#
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p2_r3">Core business logic for budgets &amp; periodic reporting</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 3.79 2 6v12c0 2.21 4.48 4 10 4s10-1.79 10-4V6c0-2.21-4.48-4-10-4zm0 2c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3zm0 16c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V17c0 1.66-3.58 3-8 3zm0-5c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V12c0 1.66-3.58 3-8 3z"/></svg>
+                    SQL Server
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p2_r4">Relational database for structured wallets &amp; ledger</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                    Docker
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p2_r5">Containerized backend runtime &amp; local DB ecosystem</span>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: VeritaShop -->
+          <article class="project-showcase-card reveal" style="--reveal-delay: 280ms; --reveal-duration: 800ms" id="project-veritashop" data-kb-section="project3" data-kb-highlights="nextdotjs,python,nodedotjs,docker" data-cursor="hover">
+            <div class="project-card-grid">
+              <div class="project-col-main">
+                <div class="project-top-row">
+              <span class="project-kicker-id" data-i18n="p3_kicker">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                03 // E-COMMERCE &amp; AI
+              </span>
+              <span class="project-badge-pill" data-i18n="p3_badge">FrontEnd &amp; AI · 2026</span>
+            </div>
+
+                <div class="project-header-wrap">
+              <h3 class="project-card-heading">VeritaShop</h3>
+            </div>
+
+                <div class="project-desc-block">
+              <span class="project-desc-kicker" data-i18n="project_desc_kicker">PROJECT OVERVIEW</span>
+              <p class="project-brief" data-i18n="p3_desc">
+                Engineered an intelligent smartphone e-commerce ecosystem featuring Aspect-Based Sentiment Analysis (ABSA). Deconstructed and visualized user reviews across nuanced hardware aspects (Battery, Camera, Performance, Screen, Design, Price). Built a modern web storefront using Next.js 15 &amp; React 19 SSR/SSG, a TypeScript Node.js / Express backend with Prisma ORM and PostgreSQL, AWS S3 asset delivery, and containerized deployment with Docker. Developed the core NLP machine learning pipeline in Python with rigorous preprocessing and Fleiss' Kappa label validation.
+              </p>
+            </div>
+
+                <div class="project-bottom-wrap">
+              <div class="project-chips-compact">
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg>
+                  <span>Next.js</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg>
+                  <span>Node.js</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 3.79 2 6v12c0 2.21 4.48 4 10 4s10-1.79 10-4V6c0-2.21-4.48-4-10-4zm0 2c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3zm0 16c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V17c0 1.66-3.58 3-8 3zm0-5c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V12c0 1.66-3.58 3-8 3z"/></svg>
+                  <span>PostgreSQL</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>
+                  <span>Python (AI)</span>
+                </span>
+                <span class="compact-chip">
+                  <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                  <span>Docker</span>
+                </span>
+              </div>
+              <div class="project-card-actions">
+                <div class="project-dropdown-wrap" id="veritashop-repo-dropdown">
+                  <button type="button" class="compact-btn compact-btn--primary project-dropdown-btn" id="veritashop-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                    <span data-i18n="btn_view_project">View Live Project</span>
+                    <svg class="dropdown-chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                  </button>
+                  <div class="project-dropdown-menu" id="veritashop-dropdown-menu" role="menu">
+                    <a href="https://github.com/Ristai/VeritaShop-Wedsite" target="_blank" rel="noopener noreferrer" class="project-dropdown-item" role="menuitem">
+                      <div class="dropdown-item-badge">
+                        <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="p3_repo1_title">VeritaShop (Web Platform)</span>
+                        <span class="dropdown-item-desc" data-i18n="p3_repo1_desc">Next.js 15 • Node.js • Prisma • PostgreSQL</span>
+                      </div>
+                      <svg class="dropdown-arrow-out" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                    <a href="https://github.com/Ristai/Aspect-based-Sentiment-Analysis-for-Mobile-Phone-Reviews" target="_blank" rel="noopener noreferrer" class="project-dropdown-item" role="menuitem">
+                      <div class="dropdown-item-badge">
+                        <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <span class="dropdown-item-title" data-i18n="p3_repo2_title">ABSA AI Engine (Core NLP)</span>
+                        <span class="dropdown-item-desc" data-i18n="p3_repo2_desc">Python • Aspect-Based Sentiment Analysis</span>
+                      </div>
+                      <svg class="dropdown-arrow-out" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+              </div>
+
+              <div class="project-col-roles">
+                <!-- Detailed Architecture Roles with Icons -->
+            <div class="project-tech-roles">
+              <div class="tech-roles-title">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <span data-i18n="project_roles_kicker">Architecture &amp; Tech Roles:</span>
+              </div>
+              <div class="tech-roles-grid">
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z"/></svg>
+                    Next.js 15
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r1">E-commerce web app with SSR/SSG &amp; AI metrics</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/></svg>
+                    Node.js &amp; TS
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r2">RESTful API handling cart, checkout, JWT &amp; AI</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M23.02 18.067L13.882 1.554a2.176 2.176 0 0 0-3.764 0L.98 18.067a2.176 2.176 0 0 0 1.882 3.218h18.276a2.176 2.176 0 0 0 1.882-3.218zM12 4.673l7.464 13.435H4.536L12 4.673z"/></svg>
+                    Prisma ORM
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r3">ORM mapping &amp; safe database migrations</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 3.79 2 6v12c0 2.21 4.48 4 10 4s10-1.79 10-4V6c0-2.21-4.48-4-10-4zm0 2c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3zm0 16c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V17c0 1.66-3.58 3-8 3zm0-5c-4.42 0-8-1.34-8-3v-2.22c1.88 1.35 4.77 2.22 8 2.22s6.12-.87 8-2.22V12c0 1.66-3.58 3-8 3z"/></svg>
+                    PostgreSQL
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r4">Relational storage for products &amp; sentiment scores</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>
+                    Python (ABSA AI)
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r5">NLP pipeline for preprocessing &amp; sentiment scoring</span>
+                </div>
+                <div class="tech-role-item">
+                  <span class="tech-role-badge">
+                    <svg class="tech-icon-svg" viewBox="0 0 24 24"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
+                    Docker
+                  </span>
+                  <span class="tech-role-purpose" data-i18n="p3_r6">Containerized backend and PostgreSQL stack</span>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== SECTION 6: LIÊN HỆ (CONTACT) ===== -->
+    <section id="contact" class="section contact-section" data-kb-section="contact" aria-labelledby="contact-heading">
+      <span class="section-watermark section-watermark--right" aria-hidden="true">06</span>
+      <div class="container">
+        <!-- Contact Header Wrap -->
+        <div class="contact-header-wrap">
+          <div class="reveal" style="--reveal-delay: 0ms; --reveal-duration: 700ms">
+            <div class="section-badge">
+              <span class="badge-number">06</span>
+              <span class="badge-title" data-i18n="contact_badge">Contact</span>
+            </div>
+          </div>
+          <div class="reveal" style="--reveal-delay: 80ms; --reveal-duration: 700ms">
+            <h2 id="contact-heading" class="contact-heading">
+              <span data-i18n="contact_heading_pre">Get in</span> <span class="hero-name-accent" data-i18n="contact_heading_accent">Touch</span><span class="title-accent">.</span>
+            </h2>
+          </div>
+          <div class="reveal" style="--reveal-delay: 160ms; --reveal-duration: 700ms">
+            <p class="contact-desc" data-i18n="contact_desc">
+              Whether you have an inquiry, a project proposal, or just want to chat about engineering and design, my inbox is always open!
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-box-grid">
+          <!-- Left: 4 Contact Channels -->
+          <div class="contact-channels reveal" style="--reveal-delay: 200ms; --reveal-duration: 700ms">
+            <div class="channel-card channel-card--email" id="contact-email" data-cursor="hover" data-magnetic="true">
+              <a href="mailto:ngotientai17112004@gmail.com" class="channel-main-link" title="Nhấn để gửi email trực tiếp" aria-label="Gửi email tới ngotientai17112004@gmail.com">
+                <div class="channel-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="channel-info">
+                  <span class="channel-name" data-i18n="contact_email_title">Email</span>
+                  <span class="channel-value">ngotientai17112004@gmail.com</span>
+                </div>
+              </a>
+              <div class="channel-actions">
+                <!-- Lựa chọn 2: Copy to Clipboard -->
+                <button type="button" class="channel-action-btn copy-btn" id="copy-email-btn" data-email="ngotientai17112004@gmail.com" aria-label="Copy email address">
+                  <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span class="copy-toast" data-i18n="contact_email_copy">Copy</span>
+                </button>
+                <!-- Lựa chọn 1: Mở ứng dụng gửi Email (như hiện tại) -->
+                <a href="mailto:ngotientai17112004@gmail.com" class="channel-action-btn open-btn" aria-label="Send email via mail app">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"/>
+                    <polyline points="7 7 17 7 17 17"/>
+                  </svg>
+                  <span class="copy-toast" data-i18n="contact_email_send">Send Mail</span>
+                </a>
+              </div>
+            </div>
+
+            <a href="tel:+84961181232" class="channel-card" id="contact-phone" data-cursor="hover" data-magnetic="true">
+              <div class="channel-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name" data-i18n="contact_phone_title">Phone</span>
+                <span class="channel-value">+84 961 181 232</span>
+              </div>
+              <div class="channel-arrow" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"/>
+                  <polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </div>
+            </a>
+
+            <a href="https://github.com/Ristai" target="_blank" rel="noopener noreferrer" class="channel-card" id="contact-github" data-cursor="hover" data-magnetic="true">
+              <div class="channel-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name">GitHub</span>
+                <span class="channel-value">github.com/Ristai</span>
+              </div>
+              <div class="channel-arrow" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"/>
+                  <polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/ti%E1%BA%BFn-t%C3%A0i-ng%C3%B4-0473b5350/" target="_blank" rel="noopener noreferrer" class="channel-card" id="contact-linkedin" data-cursor="hover" data-magnetic="true">
+              <div class="channel-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-name">LinkedIn</span>
+                <span class="channel-value">linkedin.com/in/tiến-tài-ngô-0473b5350</span>
+              </div>
+              <div class="channel-arrow" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"/>
+                  <polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </div>
+            </a>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="contact-form" class="contact-form-card reveal" style="--reveal-delay: 200ms; --reveal-duration: 700ms" novalidate aria-label="Contact form">
+            <h3 class="form-title" data-i18n="form_title">Send a Direct Message</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name"><span data-i18n="form_name">Your Name</span> <span class="required">*</span></label>
+                <input type="text" id="cf-name" name="name" placeholder="John Doe" data-i18n-placeholder="form_name_ph" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="cf-email"><span data-i18n="form_email">Email Address</span> <span class="required">*</span></label>
+                <input type="email" id="cf-email" name="email" placeholder="name@company.com" data-i18n-placeholder="form_email_ph" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-msg"><span data-i18n="form_msg">Message</span> <span class="required">*</span></label>
+              <textarea id="cf-msg" name="message" rows="4" placeholder="How can I help with your project? Feel free to share details here..." data-i18n-placeholder="form_msg_ph" required></textarea>
+            </div>
+            <button type="submit" class="frost-btn frost-btn--primary btn-block" id="submit-btn" data-cursor="hover" data-magnetic="true">
+              <span data-i18n="form_btn_send">Send Message</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <script src="translations.js?v=2"></script>
+  <script src="keyboard_data.js?v=2"></script>
+  <script src="main.js?v=36"></script>
+</body>
+</html>

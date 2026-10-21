@@ -840,6 +840,11 @@ document.addEventListener('DOMContentLoaded', () => {
         pill.setAttribute('aria-pressed', String(isMatch));
       });
 
+      // Update browser tab title
+      if (dict.page_title) {
+        document.title = dict.page_title;
+      }
+
       // Update [data-i18n] text content
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');

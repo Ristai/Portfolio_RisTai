@@ -6,6 +6,9 @@
 
 const TRANSLATIONS = {
   en: {
+    // Browser Page Title
+    page_title: "Portfolio - Ngo Tien Tai",
+
     // Navigation
     nav_home: "Home",
     nav_about: "About",
@@ -26,6 +29,9 @@ const TRANSLATIONS = {
     hero_role: "Frontend • FullStack • Software Engineer",
     hero_greeting_1: "Hello,",
     hero_greeting_2: "I'm",
+    hero_name_first: "Ngo",
+    hero_name_middle: "Tien",
+    hero_name_last: "Tai",
     hero_typewriter_prefix: "Specializing in",
     hero_typewriter_roles: [
       "Frontend Developer",
@@ -43,8 +49,10 @@ const TRANSLATIONS = {
     // Section 02: About
     about_badge: "About Me",
     about_title: "Frontend • FullStack • Software Engineer",
-    about_lead: "I am <strong>Ngô Tiến Tài</strong>, a developer specializing in <strong>Frontend, FullStack &amp; Software Engineering</strong>. I focus on engineering robust web applications with <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong>, and <strong>TailwindCSS</strong>.",
+    about_lead: "I am <strong>Ngo Tien Tai</strong>, a developer specializing in <strong>Frontend, FullStack &amp; Software Engineering</strong>. I focus on engineering robust web applications with <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong>, and <strong>TailwindCSS</strong>.",
     about_text: "I prioritize clean software architecture, converting Figma designs into pixel-perfect web interfaces, writing maintainable code, and ensuring rock-solid performance across the full stack.",
+    about_code_name: "'Ngo Tien Tai'",
+    about_code_dev: '"Ngo Tien Tai"',
     ide_copy: "Copy",
     ide_copied: "Copied!",
 
@@ -167,6 +175,9 @@ const TRANSLATIONS = {
   },
 
   vi: {
+    // Browser Page Title
+    page_title: "Portfolio - Ngô Tiến Tài",
+
     // Navigation
     nav_home: "Trang chủ",
     nav_about: "Về tôi",
@@ -187,6 +198,9 @@ const TRANSLATIONS = {
     hero_role: "Frontend • FullStack • Software Engineer",
     hero_greeting_1: "Xin chào,",
     hero_greeting_2: "tôi là",
+    hero_name_first: "Ngô",
+    hero_name_middle: "Tiến",
+    hero_name_last: "Tài",
     hero_typewriter_prefix: "Chuyên về",
     hero_typewriter_roles: [
       "Frontend Developer",
@@ -206,6 +220,8 @@ const TRANSLATIONS = {
     about_title: "Frontend • FullStack • Software Engineer",
     about_lead: "Tôi là <strong>Ngô Tiến Tài</strong>, lập trình viên phát triển <strong>Frontend, FullStack &amp; Software Engineering</strong>. Tôi tập trung xây dựng các ứng dụng web với <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong> và <strong>TailwindCSS</strong>.",
     about_text: "Tôi chú trọng thiết kế kiến trúc phần mềm mạch lạc, chuyển đổi chính xác thiết kế Figma thành giao diện web hoàn chỉnh, viết mã nguồn sạch sẽ, dễ bảo trì và tối ưu hiệu năng ổn định trên toàn bộ hệ thống.",
+    about_code_name: "'Ngô Tiến Tài'",
+    about_code_dev: '"Ngô Tiến Tài"',
     ide_copy: "Copy",
     ide_copied: "Đã chép!",
 

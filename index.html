@@ -13,23 +13,29 @@
         document.documentElement.setAttribute('data-season', s);
         var t = localStorage.getItem('portfolio_theme') || 'night';
         document.documentElement.className = (t === 'day') ? 'theme-day' : 'theme-night';
+        document.title = (l === 'vi') ? 'Portfolio - Ngô Tiến Tài' : 'Portfolio - Ngo Tien Tai';
       } catch (e) {}
     })();
   </script>
-  <title>Ngô Tiến Tài — Frontend • FullStack • Software Engineer</title>
-  <meta name="description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer. Showcasing selected projects, technical stack, and enterprise software engineering experience." />
-  <meta name="author" content="Ngô Tiến Tài" />
+  <title>Portfolio - Ngo Tien Tai</title>
+  <meta name="description" content="Personal portfolio of Ngo Tien Tai — Frontend, FullStack Developer &amp; Software Engineer. Showcasing selected projects, technical stack, and enterprise software engineering experience." />
+  <meta name="author" content="Ngo Tien Tai" />
+
+  <!-- Favicon (Browser Tab Icon) -->
+  <link rel="icon" type="image/png" href="assets/images/avatar.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/images/avatar.png" />
+  <link rel="apple-touch-icon" href="assets/images/avatar.png" />
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ngô Tiến Tài — Frontend • FullStack • Software Engineer" />
-  <meta property="og:description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer." />
+  <meta property="og:title" content="Portfolio - Ngo Tien Tai" />
+  <meta property="og:description" content="Personal portfolio of Ngo Tien Tai — Frontend, FullStack Developer &amp; Software Engineer." />
   <meta property="og:image" content="assets/images/avatar.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ngô Tiến Tài — Frontend • FullStack • Software Engineer" />
-  <meta name="twitter:description" content="Personal portfolio of Ngô Tiến Tài — Frontend, FullStack Developer &amp; Software Engineer." />
+  <meta name="twitter:title" content="Portfolio - Ngo Tien Tai" />
+  <meta name="twitter:description" content="Personal portfolio of Ngo Tien Tai — Frontend, FullStack Developer &amp; Software Engineer." />
   <meta name="twitter:image" content="assets/images/avatar.png" />
 
   <!-- Fonts: Geist / Space Grotesk & Plus Jakarta Sans -->
@@ -434,9 +440,9 @@
           <h1 id="hero-title" class="hero-heading">
             <span class="hero-word"><span style="--d: 200ms" data-i18n="hero_greeting_1">Hello,</span></span>
             <span class="hero-word"><span style="--d: 260ms" data-i18n="hero_greeting_2">I'm</span></span><br/>
-            <span class="hero-word hero-name-accent"><span style="--d: 460ms">Ngô</span></span>
-            <span class="hero-word hero-name-accent"><span style="--d: 540ms">Tiến</span></span>
-            <span class="hero-word hero-name-accent"><span style="--d: 620ms">Tài</span></span>
+            <span class="hero-word hero-name-accent"><span style="--d: 460ms" data-i18n="hero_name_first">Ngo</span></span>
+            <span class="hero-word hero-name-accent"><span style="--d: 540ms" data-i18n="hero_name_middle">Tien</span></span>
+            <span class="hero-word hero-name-accent"><span style="--d: 620ms" data-i18n="hero_name_last">Tai</span></span>
           </h1>
 
           <div class="hero-typewriter-box fade-in-up" style="--d: 620ms">
@@ -512,7 +518,7 @@
             </div>
             <div class="reveal" style="--reveal-delay: 160ms; --reveal-duration: 700ms">
               <p class="about-lead" data-i18n-html="about_lead">
-                I am <strong>Ngô Tiến Tài</strong>, a developer specializing in <strong>Frontend, FullStack &amp; Software Engineering</strong>. I focus on engineering robust web applications with <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong>, and <strong>TailwindCSS</strong>.
+                I am <strong>Ngo Tien Tai</strong>, a developer specializing in <strong>Frontend, FullStack &amp; Software Engineering</strong>. I focus on engineering robust web applications with <strong>JavaScript, TypeScript, React, Next.js, Node.js</strong>, and <strong>TailwindCSS</strong>.
               </p>
             </div>
             <div class="reveal" style="--reveal-delay: 240ms; --reveal-duration: 700ms">
@@ -564,7 +570,7 @@
               <div class="ide-code-container">
                 <!-- File 1: about.ts -->
                 <pre class="ide-code-pane ide-code-pane--active" id="paneAbout"><code><span class="code-kw">export const</span> <span class="code-var">developer</span>: <span class="code-type">DeveloperProfile</span> = {
-  <span class="code-prop">name</span>: <span class="code-str">'Ngô Tiến Tài'</span>,
+  <span class="code-prop">name</span>: <span class="code-str" data-i18n="about_code_name">'Ngo Tien Tai'</span>,
   <span class="code-prop">roles</span>: [<span class="code-str">'Frontend'</span>, <span class="code-str">'FullStack'</span>, <span class="code-str">'Software Engineer'</span>],
   <span class="code-prop">stack</span>: [
     <span class="code-str">'HTML5 / CSS3'</span>, <span class="code-str">'JavaScript'</span>, <span class="code-str">'TypeScript'</span>,
@@ -578,7 +584,7 @@
 };</code></pre>
                 <!-- File 2: stack.json -->
                 <pre class="ide-code-pane" id="paneStack" style="display: none;"><code>{
-  <span class="code-prop">"developer"</span>: <span class="code-str">"Ngô Tiến Tài"</span>,
+  <span class="code-prop">"developer"</span>: <span class="code-str" data-i18n="about_code_dev">"Ngo Tien Tai"</span>,
   <span class="code-prop">"roles"</span>: [
     <span class="code-str">"Frontend"</span>,
     <span class="code-str">"FullStack"</span>,
@@ -1280,8 +1286,8 @@
   </main>
 
 
-  <script src="js/translations.js?v=2"></script>
+  <script src="js/translations.js?v=3"></script>
   <script src="js/keyboard_data.js?v=2"></script>
-  <script src="js/main.js?v=37"></script>
+  <script src="js/main.js?v=38"></script>
 </body>
 </html>
